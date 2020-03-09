@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-white"></a>
+			<h1 class="mui-title">高频题库</h1>
+		</header>
+		<section class="cg-cont answer-wrap mui-hidden">
+				<div id="slider" class="mui-slider" style="padding-bottom: 60px;">
+					<div class="mui-slider-group">
+						<div class="answer-item mui-slider-item mui-control-content {sub_item_title} mui-active ">
+							<!-- 	<div id="{sub_scroll}" class="mui-scroll-wrapper">
+								<div class="mui-scroll"> -->
+							<div class="white-bg-1">
+								<div class="white-bg-2"></div>
+							</div>
+							<div class="level-cont white-bg-3">
+								<div class="dopra-con clearfix"> <span class="st-name">{sub_danxuan}</span> <span class="st-num"><i>{sub_current}</i>/{sub_count}</span>
+								</div>
+								<div class="jt-bg"></div>
+								<div class="subject-con">
+									<div class="sub-content">
+										<div class="sub-dotitle" data-examid="0" data-issubmit="0" data-answer="{sub_istrue}" data-score="0"
+										 data-examtype="0">
+											{sub_title}
+										</div>
+										<dl class="sub-answer" data-isanswer="false">
+											{sub_ABCD}
+										</dl>
+										<div class="submit_div" style="display: none;">
+											<a href="javascript:;">提交答案</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="refer-answer" style="display:none">
+								<div class="mui-istrue wrong-ts"><i></i>回答错误</div>
+								<div class="reck clearfix">
+									<ul>
+			
+										<li>参考答案：<em>A,B,C,D</em> </li>
+										<li>您的答案：<em class="wrong"></em></li>
+			
+			
+									</ul>
+			
+								</div>
+								<div class="solution">
+									<h4 class="solution-title">参考解析：</h4>
+									<div class="wenzi">
+										会计目标，是要求会计工作完成的任务或达到的标准，即向财务报告使用者提供与企业财务状况、经营成果和现金流量等有关的会计信息，反映企业管理层受托责任履行情况，有助于财务报告使用者作出经济决策。
+			
+									</div>
+								</div>
+							</div>
+							<!-- </div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</section>
+		<footer class="tk-subfoot">
+				<a class="prev-btn">上一题</a>
+				<ul class="ft-menu">
+					<li class="ks-answer"><a href="javascript:;"><i></i>答题卡</a></li>
+				</ul>
+				<a class="next-btn">下一题</a>
+			</footer>
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+		<script src="../js/webviewGroup.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			
+			mui.init();
+			mui.plusReady(function() {
+				
+				var _self = plus.webview.currentWebview();
+				var group = new webviewGroup(_self.id, {
+					items: [{
+						id: "1.html",
+						url: "answer.html",
+						extras: {}
+					}, {
+						id: "2.html",
+						url: "answer.html",
+						extras: {}
+					}, {
+						id: "3.html",
+						url: "answer.html",
+						extras: {}
+					}, {
+						id: "4.html",
+						url: "answer.html",
+						extras: {}
+					}, {
+						id: "5.html",
+						url: "answer.html",
+						extras: {}
+					}],
+					onChange: function(obj) {
+						
+						// var c = document.querySelector(".mui-control-item.mui-active");
+						// if(c) {
+						// 	c.classList.remove("mui-active");
+						// }
+						// var target = document.querySelector(".mui-scroll .mui-control-item:nth-child(" + (parseInt(obj.index) + 1) + ")");
+						// target.classList.add("mui-active");
+						// if(target.scrollIntoView) {
+						// 	target.scrollIntoView();
+						// }
+						//console.log($("body").html());
+					},
+					
+				});
+				$("html,body").css('overflow','hidden');
+				mui(".mui-scroll").on("tap", ".mui-control-item", function(e) {
+					// var wid = this.getAttribute("data-wid");
+					// group.switchTab(wid);
+				});
+			 
+			}); 
+			mui.back = function() {
+				var _self = plus.webview.currentWebview();
+				_self.close("auto");
+			}
+		</script>
+	</body>
+</html>

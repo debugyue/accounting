@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+	</head>
+	<body style="padding-top: 44px;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-white"></a>
+			<h1 class="mui-title">班主任</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div class="qrcode">
+					<img id="qrcode" src="../images/qrcode.png" width="100%" />
+					<a id="shortcut" style="width: 60%;margin: 15px auto;padding: 5px;" class="mui-hidden mui-btn mui-btn-block mui-btn-red">创建桌面图标</a>
+				</div>
+				<p style="text-align: center;">长按保存二维码添加班主任微信</p>
+				<p style="text-align: center;color: #ccc;text-indent: 0;margin-top:10px;">或长按复制微信号：<span id="weixinhao">WX12121212</span></p>
+			</div>
+		</div>
+		<script>
+			mui.init({
+				gestureConfig: {
+					longtap: true, //默认为false
+				}
+			});
+			mui("body").on('longtap', '#qrcode', function() {
+				var url = this.src;
+				plus.nativeUI.actionSheet({
+					cancel: '取消',
+					buttons: [{
+						title: '保存到相册'
+					}]
+				}, function(e) {
+					var index = e.index;
+					if (e.index === 1) {
+						plus.gallery.save(url, function() {
+							mui.toast('保存成功');
+						}, function() {
+							mui.toast('保存失败，请重试！');
+						});
+					}
+				});
+			});
+			mui("body").on('longtap', '#weixinhao', function() {
+				var copy=$("#weixinhao").text();
+				mui.plusReady(function() {
+					//判断是安卓还是ios
+					if (mui.os.ios) {
+						//ios
+						var UIPasteboard = plus.ios.importClass("UIPasteboard");
+						var generalPasteboard = UIPasteboard.generalPasteboard();
+						//设置/获取文本内容:
+						generalPasteboard.plusCallMethod({
+							setValue: copy,
+							forPasteboardType: "public.utf8-plain-text"
+						});
+						generalPasteboard.plusCallMethod({
+							valueForPasteboardType: "public.utf8-plain-text"
+						});
+						mui.toast("已成功复制到剪贴板");
+					} else {
+						//安卓
+						var context = plus.android.importClass("android.content.Context");
+						var main = plus.android.runtimeMainActivity();
+						var clip = main.getSystemService(context.CLIPBOARD_SERVICE);
+						plus.android.invoke(clip, "setText", copy);
+						mui.toast("已成功复制到剪贴板");
+					}
+				});
+			});
+		</script>
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+	</body>
+</html>

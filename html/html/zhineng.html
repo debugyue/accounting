@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+	</head>
+	<body style="padding-top: 44px;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-white"></a>
+			<h1 class="mui-title">智能刷题</h1>
+		</header>
+		<section>
+			<div id="chapterlist" class="chapter-box" style="padding-left: 20px;">
+				<div class="van-collapse">
+				
+				</div>
+			</div>
+		</section>
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+		<script>
+			var host="";
+			function zhineng() {
+				console.log(host);
+				$.ajax({
+					type: "GET",
+					url: host+"/cate/list/0",
+					data: {},
+					dataType: "json",
+					success: function(data) {
+						var str = "";
+						for (var temp in data) {
+							var obj = data[temp];
+							if (temp == 0)
+								str += '<div class="van-collapse-item">';
+							else
+								str += '<div class="van-collapse-item van-hairline--top">';
+							str +='<div role="button" tabindex="0" aria-expanded="false" class="van-cell van-cell--borderless van-collapse-item__title">';
+							str += '<div class="van-cell__title">';
+							str += '<div class="zj-wrap">';
+							str += '<div class="zj-inner">';
+							str += '<p class="zj-title dian-icon close paddingleft4"><i></i>' + obj.title + '</p>';
+							str +=
+								'<p class="zhang-xx paddingleft4"><span class="right40">0 / 255</span><span>正确率：<span class="colorblack">10%</span></span></p>';
+							str+='<a data-href="answer.html?cid='+obj.id+'&title='+obj.title+'" class="ico_zuoti mui-a-item"><i></i>做题</a>';
+							str += '</div>';
+							str += '</div>'; 
+							str += '</div>';
+							str += '</div>';
+							str += '</div>';
+						}
+						$("#chapterlist>.van-collapse").html(str);
+						mui("#chapterlist").on('tap', '.zj-inner p', function() {
+			
+							let that = $(this).parents(".van-collapse-item__title"); //点击的按钮
+							let list = $(that).parent().find(".van-collapse-item__wrapper")[0]; //下面的列表
+							if ($(list).length > 0) {
+								let obj = $(that).find(".zj-title");
+								if ($(obj).hasClass("close")) {
+									//console.log("金");
+									$(obj).removeClass("close");
+									$(obj).addClass("open");
+									$(list).removeClass("mui-hidden");
+								} else {
+									//console.log("银");
+									$(obj).removeClass("open");
+									$(obj).addClass("close");
+									$(list).addClass("mui-hidden");
+								}
+							}
+						});
+					}
+				});
+			}
+			
+			mui.plusReady(function () {
+				host = plus.storage.getItem("accHost");
+			    zhineng();
+			})
+			
+		</script>
+	</body>
+</html>

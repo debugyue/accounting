@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+		<link rel="stylesheet" href="../css/new_pay.css">
+		<link rel="stylesheet" href="../css/mui.picker.css">
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-white"></a>
+			<h1 class="mui-title">收货地址</h1>
+		</header>
+		<div id="boxscroll" style="padding-top: 44px;">
+			<div class="wrap">
+				<div id="order-pay">
+					<div class="">
+						<!--填写收件地址-->
+						<ul class="personal-info clearfix" id="order-user">
+							<li>
+								<span>真实姓名：</span>
+								<input name="truename" type="text" placeholder="姓名" value="我的小可爱">
+							</li>
+							<li>
+								<span>联系方式：</span>
+								<input name="tel" type="text" placeholder="手机或者电话号码" value="15321521451">
+							</li>
+							<li class="regfree_address_item type_arrow" id="recAddrBlock">
+								<span>所在地区：</span>
+								<input name="province" id="o_dizhi" type="text" readonly="" placeholder="选择省市区县" value="天津天津河东区">
+							</li>
+							<li class="noborder">
+								<span>详细地址：</span>
+								<input id="order-address" type="text" placeholder="街道、楼牌号等信息" value="东城府邸D区0023号1943">
+							</li>
+
+						</ul>
+						<div id="default" class="address-sz" data-default="1" style="border-bottom: #eee solid 1px;">
+							<span>设置默认地址</span>
+
+							<div class="mui-switch mui-switch-blue mui-switch-mini" style="float: right;margin-top: 10px;line-height: 22px;margin-right: 10px;">
+								<div class="mui-switch-handle"></div>
+							</div>
+						</div>
+						<!--选择设置默认地址样式 address-sztwo -->
+						<div class="address-buttonss">
+							<a href="javascript:;">确 定</a>
+						</div>
+						<!--填写收件地址 end-->
+					</div>
+				</div>
+				<!--地区选择-->
+				<div class="mod_address_slide show" style="display:none" id="popupAddr">
+					<div class="mod_address_slide_main type_flex">
+						<div class="mod_address_slide_head" id="popupAddrHead">选择区域<i class="close"></i></div>
+						<div class="mod_address_slide_body" id="addrBody">
+							<ul class="mod_address_slide_tabs_1" id="ulAddrTab">
+								<li class="cur"><span>请选择</span></li>
+								<li><span>城市</span></li>
+								<li><span>区县</span></li>
+							</ul>
+							<ul class="mod_address_slide_list_2 b-addres" ptag="7387.1.2" id="ulAddrList"></ul>
+							<ul class="mod_address_slide_list_2 b-addres" ptag="7387.1.2" id="city" style="display:none"></ul>
+							<ul class="mod_address_slide_list_2 b-addres" ptag="7387.1.2" id="area" style="display:none"></ul>
+						</div>
+						<div class="mod_address_slide_foot" style="display: none;"><a id="addrBtn" style="display: none;" href="javascript:void(0);"
+							 tag="1"></a></div>
+					</div>
+				</div>
+				<!--地区选择 end-->
+
+			</div>
+		</div>
+
+
+
+
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+		<script src="../js/jquery.nicescroll.min.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script src="../js/data.city.js"></script>
+		<script type="text/javascript">
+			var def=false;
+			$("#boxscroll").height(document.documentElement.clientHeight - 110);
+			$("#boxscroll").niceScroll({
+				autohidemode: false
+			});
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			mui('.mui-switch').each(function() { 
+				this.addEventListener('toggle', function(event) {
+					def=event.detail.isActive;
+				});
+			});
+			//选择省市区
+			var city_picker = new mui.PopPicker({
+				layer: 3
+			});
+			city_picker.setData(init_city_picker);
+			$("#recAddrBlock").on("tap", function() {
+				var that = this;
+				setTimeout(function() {
+					city_picker.show(function(items) {
+						var addressIds = (items[0] || {}).value + "," + (items[1] || {}).value + "," + (items[2] || {}).value;
+						var addresstexts = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+						$(that).find("#o_dizhi").val(addresstexts);
+						$(that).attr('data-value', addressIds);
+			
+					});
+				}, 200);
+			});
+		</script>
+	</body>
+</html>

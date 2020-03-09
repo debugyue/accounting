@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.com.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function(){
+			             mui(".mui-bar-nav").on('tap','.mui-title',function(){
+			                                console.log("点击事件");
+			             				   alert(ddd);
+			                             
+			                                //console.log("点击事件id=="+topicId);
+			                             })
+			            });
+		</script>
+	</head>
+	<body>
+		<!-- 主界面移动、菜单不动 -->
+		<div class="mui-off-canvas-wrap mui-draggable">
+			<!-- 主页面容器 -->
+			<div class="mui-inner-wrap">
+				<!-- 主页面标题 -->
+				<header class="mui-bar mui-bar-nav">
+
+					<svg t="1573809539025" class="icon mui-icon mui-action-menu mui-pull-lef" viewBox="0 0 1024 1024" version="1.1"
+					 xmlns="http://www.w3.org/2000/svg" p-id="2080" width="45" height="45">
+						<path d="M872.7 383.2c0.2 0.7 0.3 1.4 0.5 2-46.6-155.4-190.7-269-361-269s-314.4 113.6-361 269c0.2-0.7 0.3-1.4 0.5-2-50.1 11.6-87.6 56.3-87.6 109.9 0 53.6 37.5 98.3 87.6 109.9-0.1-0.3-0.1-0.5-0.2-0.8 3.6 10.6 14.9 16.5 25.7 13.4 11.1-3.3 17.4-15 14-26.1-9.3-31.1-14.1-63.6-14.1-96.4 0-184.7 150.3-335 335-335s335 150.3 335 335c0 152-101.8 280.4-240.8 321.3-11.3-17-30.5-28.1-52.3-28.1h-83.7c-34.7 0-62.8 28.1-62.8 62.8 0 34.7 28.1 62.8 62.8 62.8H554c32.7 0 59.2-25 62.2-56.8 122.9-35.4 220.2-131.7 256.9-254-0.2 0.7-0.3 1.4-0.5 2 50-11.6 87.3-56.1 87.5-109.5v-0.8c-0.1-53.6-37.5-98.1-87.4-109.6z"
+						 p-id="2081" fill="#007aff"></path>
+						<path d="M701.6 579.1c3.6-10.3-1.9-21.5-12.2-25.1-10.3-3.5-21.6 1.9-25.1 12.2-22 63.5-82 106.2-149.3 106.2-67.4 0-127.5-42.8-149.4-106.6-3.5-10.3-14.8-15.8-25.1-12.2-10.3 3.5-15.8 14.8-12.2 25.1 27.4 79.7 102.4 133.2 186.7 133.2 84.1-0.1 159.1-53.5 186.6-132.8z"
+						 p-id="2082" fill="#007aff"></path>
+					</svg>
+					<!--<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide" ></a> mui-icon mui-icon-arrowup-->
+					<h1 class="mui-title"><span>初级会计练习</span><i class="mui-icon mui-icon-arrowdown"></i></h1>
+					<ul class="mui-title-ul mui-hidden">
+						<li>初级会计练习</li>
+						<li>初级会计练习</li>
+					</ul>
+					<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-right" href="#offCanvasSide"></a>
+				</header>
+				<nav class="mui-bar mui-bar-tab">
+					<a class="mui-tab-item mui-active">
+						<span class="mui-icon mui-icon-home"></span>
+						<span class="mui-tab-label">首页</span>
+					</a>
+					<a class="mui-tab-item">
+						<span class="mui-icon mui-icon-phone"></span>
+						<span class="mui-tab-label">电话</span>
+					</a>
+					<a class="mui-tab-item">
+						<span class="mui-icon mui-icon-email"></span>
+						<span class="mui-tab-label">邮件</span>
+					</a>
+					<a class="mui-tab-item">
+						<span class="mui-icon mui-icon-gear"></span>
+						<span class="mui-tab-label">设置</span>
+					</a>
+				</nav>
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!-- 主界面具体展示内容 -->
+
+					</div>
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+	</body>
+</html>

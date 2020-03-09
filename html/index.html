@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<script src="js/jquery-3-min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/master.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<script type="text/javascript">
+			function checkfast() {
+				//读取本地存储，检查是否为首次启动
+				var showGuide = plus.storage.getItem("accounting");
+				plus.storage.setItem("accHost", "http://api.zhuangxuefei.cn:8080");
+				//仅支持竖屏显示
+				plus.screen.lockOrientation("portrait-primary");
+				if (showGuide) {
+					//有值，说明已经显示过了，无需显示；
+					//关闭splash页面；
+					plus.navigator.closeSplashscreen();
+					plus.navigator.setFullscreen(false);
+					//预加载
+					preload();
+				} else {
+					//显示启动导航
+					mui.openWindow({
+						id: 'guide',
+						url: 'html/guide.html',
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: 'none'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+					//延迟的原因：优先打开启动导航页面，避免资源争夺
+					setTimeout(function() {
+						//预加载
+						preload();
+					}, 200);
+				}
+			}
+			mui.plusReady(function() {
+				checkfast();
+			});
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a data-href="html/info.html" class="mui-a-item"><svg t="1574302888995" class="icon mui-icon mui-action-menu mui-pull-lef"
+				 viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3118" width="45" height="45">
+					<path d="M960 403.2c-38.4-217.6-224-377.6-448-377.6-224 0-409.6 166.4-448 377.6C25.6 435.2 0 492.8 0 550.4c0 76.8 44.8 166.4 115.2 166.4 64 0 64-70.4 64-166.4 0-89.6 0-160-44.8-166.4C172.8 211.2 326.4 83.2 512 83.2c185.6 0 339.2 128 377.6 294.4-44.8 12.8-44.8 76.8-44.8 166.4 0 64 0 108.8 12.8 140.8-57.6 89.6-140.8 153.6-243.2 179.2-19.2-25.6-57.6-44.8-102.4-44.8-64 0-115.2 32-115.2 70.4 0 38.4 51.2 70.4 115.2 70.4s115.2-32 115.2-70.4c0 0 0 0 0 0 102.4-25.6 192-96 249.6-185.6 6.4 6.4 19.2 6.4 32 6.4 70.4 0 115.2-89.6 115.2-166.4C1024 492.8 998.4 435.2 960 403.2z"
+					 p-id="3119" fill="#e6e6e6"></path>
+				</svg>
+			</a>
+			<!--<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide" ></a> mui-icon mui-icon-arrowup-->
+			<h1 class="mui-title mui-item-title "><span class="icon-xianjinhongbao iconfont" id="mui-title">初级会计实务</span>
+				<i class="mui-icon mui-icon-arrowdown"></i>
+			</h1>
+			<ul class="mui-title-ul mui-hidden">
+				<li>初级会计实务</li>
+				<li>经济法基础</li>
+			</ul>
+			<a data-href="html/info.html" class="mui-a-item"><svg t="1574302824417" class="icon mui-icon mui-action-menu mui-pull-right"
+				 viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2166" width="45" height="45">
+					<path d="M873.202 776.004c39.796-36.367 63.946-84.144 63.946-136.467 0-91.062-73.137-168.335-174.607-195.706-6.052-145.915-154.579-262.711-336.947-262.711-186.21 0-337.163 121.764-337.163 271.968 0 68.974 31.833 131.953 84.293 179.895 16.417 15.003-2.804 56.059-26.417 89.977 39.906-11.022 82.471-18.196 119.732-18.196 17.445 0 33.731 1.575 48.03 5.062 34.908 9.865 72.437 15.231 111.523 15.231 7.591 0 15.12-0.225 22.589-0.624 40.125 71.599 129.444 121.424 233.191 121.424 29.65 0 58.123-4.069 84.603-11.556 10.848-2.646 23.199-3.84 36.435-3.84 28.265 0 60.556 5.443 90.83 13.804-17.91-25.73-32.492-56.871-20.037-68.255zM425.595 675.377c-33.675 0-66.651-4.494-98.011-13.359l-0.866-0.244-0.874-0.214c-17.618-4.299-37.738-6.478-59.801-6.478-12.681 0-25.347 0.699-37.732 1.888 2.629-29.109-8.524-48.277-22.071-60.659-21.881-19.995-38.877-42.477-50.515-66.818-11.687-24.446-17.616-50.153-17.616-76.405 0-57.328 28.506-111.892 80.265-153.645 26.429-21.317 57.391-38.117 92.023-49.934 36.391-12.417 75.15-18.711 115.199-18.711s78.807 6.295 115.199 18.711c34.633 11.815 65.594 28.617 92.023 49.934 46.193 37.262 73.845 84.732 79.261 135.26 0.001 0 0.001 0 0.002 0-10.069-0.971-20.314-1.486-30.708-1.486-141.263 0-255.777 92.371-255.777 206.321 0 12.21 1.326 24.174 3.847 35.803-0.001-0.002-0.001-0.002-0.001-0.004-1.285 0.014-2.565 0.041-3.847 0.041zM839.686 739.338c-8.029 7.34-18.617 20.825-20.541 41.932-5.547-0.315-11.14-0.489-16.737-0.489-17.695 0-33.914 1.769-48.207 5.257l-0.874 0.214-0.867 0.242c-22.731 6.427-46.646 9.683-71.089 9.683-29.06 0-57.162-4.561-83.52-13.551-24.941-8.51-47.2-20.576-66.153-35.865-36.388-29.353-56.429-67.431-56.429-107.222 0-39.795 20.041-77.874 56.429-107.226 18.955-15.29 41.211-27.355 66.153-35.865 26.358-8.993 54.46-13.552 83.52-13.552s57.161 4.561 83.519 13.552c24.942 8.512 47.201 20.576 66.154 35.865 36.388 29.351 56.428 67.43 56.428 107.226 0 18.112-4.101 35.873-12.19 52.789-8.162 17.069-20.138 32.887-35.596 47.011zM277.639 399.92c0.27-28.671 18.21-51.777 40.304-51.777 22.26 0 40.306 23.46 40.306 52.398 0 28.94-18.045 52.398-40.306 52.398-22.094 0-40.033-23.107-40.302-51.744zM487.295 399.92c0.27-28.671 18.21-51.777 40.302-51.777 22.259 0 40.305 23.46 40.305 52.398 0 28.94-18.045 52.398-40.305 52.398-22.092 0-40.032-23.107-40.301-51.744zM580.218 601.195c0.27-22.034 14.074-39.763 31.061-39.763 17.156 0 31.065 18.08 31.065 40.384 0 22.304-13.908 40.384-31.065 40.384-16.988 0-30.791-17.729-31.061-39.73zM729.874 601.195c0.27-22.034 14.074-39.763 31.062-39.763 17.156 0 31.067 18.08 31.067 40.384 0 22.304-13.909 40.384-31.067 40.384-16.989 0-30.794-17.729-31.062-39.73z"
+					 p-id="2167" fill="#e6e6e6"></path>
+				</svg>
+			</a>
+			<!--<a class="mui-action-menu mui-icon mui-icon-weixin mui-pull-right" href="#offCanvasSide"></a>-->
+		</header>
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper" id="pullrefresh" style="padding-top: 44px;padding-bottom: 50px;">
+				<div class="mui-scroll">
+					<div id="index" class="mui-control-content mui-active">
+						<div id="d1"></div>
+						<!-- 主界面具体展示内容 -->
+						<div class="mui-juli-kaoshi">距离最近一次考试还有<span class="color_red"> 172 </span>天</div>
+						<!-- 轮播图开始 -->
+						<div class="mui-slider-wrapper">
+							<div id="slider" class="mui-slider">
+								<div class="mui-slider-group mui-slider-loop">
+									<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="#">
+											<img src="images/4.jpg">
+										</a>
+									</div>
+									<!-- 第一张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="images/1.jpg">
+										</a>
+									</div>
+									<!-- 第二张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="images/2.jpg">
+										</a>
+									</div>
+									<!-- 第三张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="images/3.jpg">
+										</a>
+									</div>
+									<!-- 第四张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="images/4.jpg">
+										</a>
+									</div>
+									<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="#">
+											<img src="images/1.jpg">
+										</a>
+									</div>
+								</div>
+								<!--<div class="mui-slider-indicator">
+																	<div class="mui-indicator mui-active"></div>
+																	<div class="mui-indicator"></div>
+																	<div class="mui-indicator"></div>
+																	<div class="mui-indicator"></div>
+																</div>-->
+							</div>
+						</div>
+						<!-- 轮播图结束 -->
+						<!-- 分类导航开始 -->
+						<div class="mui-content-nav">
+							<ul class="mui-table-view mui-grid-view mui-grid-8">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-image"><a class="mui-a-item" data-href="html/kaodianlist.html">
+										<img src="images/nav1.jpg" alt="" />
+										<div class="mui-media-body">考点练习</div>
+									</a></li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-image"><a class="mui-a-item" data-href="html/zhineng.html">
+										<img src="images/nav2.jpg" alt="" />
+										<div class="mui-media-body">智能刷题</div>
+									</a></li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-image"><a class="mui-a-item" data-href="html/linianzhenti.html">
+										<img src="images/nav3.jpg" alt="" />
+										<div class="mui-media-body">历年真题</div>
+									</a></li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-image"><a class="mui-a-item" data-href="html/monishijuan.html">
+										<img src="images/nav4.jpg" alt="" />
+										<div class="mui-media-body">模拟测试</div>
+									</a></li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-image"><a class="mui-a-item" data-href="html/answer.html?cid=1&title=每日一练">
+										<img src="images/nav5.jpg" alt="" />
+										<div class="mui-media-body">每日一练</div>
+									</a></li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-image"><a class="mui-a-item" data-href="html/answer.html?cid=1&title=高频题库">
+										<img src="images/nav6.jpg" alt="" />
+										<div class="mui-media-body">高频题库</div>
+									</a></li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-image"><a class="mui-a-item" data-href="html/answer.html?cid=1&title=考前押题">
+										<img src="images/nav7.jpg" alt="" />
+										<div class="mui-media-body">考前押题</div>
+									</a></li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-image"><a class="mui-a-item" data-href="html/errlist.html">
+										<img src="images/nav8.jpg" alt="" />
+										<div class="mui-media-body">错题/收藏</div>
+									</a></li>
+
+							</ul>
+						</div>
+						<!-- 分类导航结束 -->
+						<!-- 智能培训开始 -->
+						<div class="mui-znpeixun-wrapper">
+							<div class="mui-znpeixun-title">智能培训</div>
+							<div class="mui-znpeixun-content">
+								<div class="mui-zhendui">
+									<img src="images/zdlx.jpg" />
+									<a class="mui-a-item" data-href="html/zhenduixing.html">开始做题</a>
+								</div>
+							</div>
+						</div>
+						<!-- 智能培训结束 -->
+
+						<div class="mui-hotjuan-wrapper">
+
+							<div class="mui-hotjuan-title">热门试卷</div>
+							<div class="mui-hotjuan-content">
+
+								<div class="mui-hotjuan-item mui-position-r mui-a-item" data-href="html/answer.html?cid=1&title=">
+									<div class="mui-hotjuan-item-title mui-ellipsis">《初级会计实务》热门试卷1</div>
+									<div class="mui-hotjuan-item-count"><span>158504</span>人做过</div>
+									<div class="mui-icon mui-icon-arrowright mui-position-a"></div>
+								</div>
+
+								<div class="mui-hotjuan-item mui-position-r mui-a-item" data-href="html/answer.html?cid=1&title=《初级会计实务》热门试卷2">
+									<div class="mui-hotjuan-item-title mui-ellipsis">《初级会计实务》热门试卷2</div>
+									<div class="mui-hotjuan-item-count"><span>45455454</span>人做过</div>
+									<div class="mui-icon mui-icon-arrowright mui-position-a"></div>
+								</div>
+								<div class="mui-hotjuan-item mui-position-r mui-a-item" data-href="html/answer.html?cid=1&title=《初级会计实务》热门试卷3">
+									<div class="mui-hotjuan-item-title mui-ellipsis">《初级会计实务》热门试卷3</div>
+									<div class="mui-hotjuan-item-count"><span>677853</span>人做过</div>
+									<div class="mui-icon mui-icon-arrowright mui-position-a"></div>
+								</div>
+								<div class="mui-hotjuan-item mui-position-r mui-a-item" data-href="html/answer.html?cid=1&title=《初级会计实务》热门试卷4">
+									<div class="mui-hotjuan-item-title mui-ellipsis">《初级会计实务》热门试卷4</div>
+									<div class="mui-hotjuan-item-count"><span>24453</span>人做过</div>
+									<div class="mui-icon mui-icon-arrowright mui-position-a"></div>
+								</div>
+								<div class="mui-hotjuan-item mui-position-r mui-a-item" data-href="html/answer.html?cid=1&title=《初级会计实务》热门试卷5">
+									<div class="mui-hotjuan-item-title mui-ellipsis">《初级会计实务》热门试卷5</div>
+									<div class="mui-hotjuan-item-count"><span>846467</span>人做过</div>
+									<div class="mui-icon mui-icon-arrowright mui-position-a"></div>
+								</div>
+								<div class="mui-hotjuan-item mui-position-r mui-a-item" data-href="html/answer.html?cid=1&title=《初级会计实务》热门试卷6">
+									<div class="mui-hotjuan-item-title mui-ellipsis">《初级会计实务》热门试卷6</div>
+									<div class="mui-hotjuan-item-count"><span>562342</span>人做过</div>
+									<div class="mui-icon mui-icon-arrowright mui-position-a"></div>
+								</div>
+								<div class="mui-hotjuan-item mui-position-r mui-a-item" data-href="html/answer.html?cid=1&title=《初级会计实务》热门试卷7">
+									<div class="mui-hotjuan-item-title mui-ellipsis">《初级会计实务》热门试卷7</div>
+									<div class="mui-hotjuan-item-count"><span>234656</span>人做过</div>
+									<div class="mui-icon mui-icon-arrowright mui-position-a"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/util.js"></script>
+		<script type="text/javascript">
+			function pulldownRefresh() {
+				setTimeout(function() {
+					location.reload();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					mui.toast('下拉刷新成功');
+				}, 1000);
+			}
+
+			function preload() {
+
+				var menu_style = {
+					left: "-70%",
+					width: '70%',
+					popGesture: "none",
+					render: "always"
+				};
+
+				if (mui.os.ios) {
+					menu_style.zindex = -1;
+				}
+			}
+
+		(function() {
+				mui.init({
+					swipeBack: true //,启用右滑关闭功能
+					// pullRefresh: {
+					// 	container: '#pullrefresh',
+					// 	down: {
+					// 		style: 'circle',
+					// 		callback: pulldownRefresh
+					// 	}
+					// }
+				});
+				mui('.mui-scroll-wrapper').scroll({
+					indicators: false,
+					deceleration: 0.0003 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006 
+				});
+
+				/**
+				 * 下拉刷新具体业务实现
+				 */
+				mui.plusReady(function() {
+					checkfast();
+					//设置系统状态栏背景为蓝色
+					plus.navigator.setStatusBarBackground('#0088ff');
+					plus.navigator.closeSplashscreen();
+					var self = plus.webview.currentWebview(),
+						leftPos = Math.ceil((window.innerWidth - 60) / 2); // 设置凸起大图标为水平居中
+					/**	
+					 * drawNativeIcon 绘制带边框的半圆，
+					 * 实现原理：
+					 *   id为bg的tag 创建带边框的圆
+					 *   id为bg2的tag 创建白色矩形遮住圆下半部分，只显示凸起带边框部分
+					 * 	 id为iconBg的红色背景图
+					 *   id为icon的字体图标
+					 *   注意创建先后顺序，创建越晚的层级越高
+					 */
+					var drawNativeIcon = util.drawNative('icon', {
+						bottom: '5px',
+						left: leftPos + 'px',
+						width: '60px',
+						height: '60px'
+					}, [{
+						tag: 'rect',
+						id: 'bg',
+						position: {
+							top: '1px',
+							left: '0px',
+							width: '100%',
+							height: '100%'
+						},
+						rectStyles: {
+							color: '#fff',
+							radius: '50%',
+							borderColor: '#444',
+							borderWidth: '1px'
+						}
+					}, {
+						tag: 'rect',
+						id: 'bg2',
+						position: {
+							bottom: '-0.5px',
+							left: '0px',
+							width: '100%',
+							height: '45px'
+						},
+						rectStyles: {
+							color: '#fff'
+						}
+					}, {
+						tag: 'rect',
+						id: 'iconBg',
+						position: {
+							top: '5px',
+							left: '5px',
+							width: '50px',
+							height: '50px'
+						},
+						rectStyles: {
+							color: '#0088ff',
+							radius: '50%'
+						}
+					}, {
+						tag: 'font',
+						id: 'icon',
+						text: '\ue632', //此为字体图标Unicode码'\e600'转换为'\ue600'
+						position: {
+							top: '0px',
+							left: '5px',
+							width: '50px',
+							height: '100%'
+						},
+						textStyles: {
+							fontSrc: '_www/fonts/iconfont.ttf',
+							align: 'center',
+							color: '#fff',
+							size: '25px'
+						}
+					}]);
+					// append 到父webview中
+					self.append(drawNativeIcon);
+					//自定义监听图标点击事件
+					//var active_color = '#fff';
+					drawNativeIcon.addEventListener('click', function(e) {
+						mui.plusReady(function() {
+							plus.nativeUI.showWaiting(); //这里是开始显示原生等待框
+							webviewShow = plus.webview.create("html/mianfei.html");
+							webviewShow.show('slide-in-right', 300);
+							return false;
+						});
+
+
+						////mui.alert('你点击了图标，你在此可以打开摄像头或者新窗口等自定义点击事件。', '悬浮球点击事件');
+						//// 重绘字体颜色
+						// if (active_color == '#fff') {
+						// 	drawNativeIcon.drawText('\ue600', {}, {
+						// 		fontSrc: '_www/fonts/iconfont.ttf',
+						// 		align: 'center',
+						// 		color: '#000',
+						// 		size: '30px'
+						// 	}, 'icon');
+						// 	active_color = '#000';
+						// } else {
+						// 	drawNativeIcon.drawText('\ue600', {}, {
+						// 		fontSrc: '_www/fonts/iconfont.ttf',
+						// 		align: 'center',
+						// 		color: '#fff',
+						// 		size: '30px'
+						// 	}, 'icon');
+						// 	active_color = '#fff';
+						// }
+
+					});
+					// 中间凸起图标绘制及监听点击完毕
+					// 创建子webview窗口 并初始化
+					var aniShow = {};
+					util.initSubpage(aniShow);
+					var nview = plus.nativeObj.View.getViewById('tabBar'),
+						activePage = plus.webview.currentWebview(),
+						targetPage,
+						subpages = util.options.subpages,
+						pageW = window.innerWidth,
+						currIndex = 0;
+					/**
+					 * 根据判断view控件点击位置判断切换的tab
+					 */
+					nview.addEventListener('click', function(e) {
+						var clientX = e.clientX;
+						if (clientX > 0 && clientX <= parseInt(pageW * 0.25)) {
+							currIndex = 0;
+						} else if (clientX > parseInt(pageW * 0.25) && clientX <= parseInt(pageW * 0.45)) {
+							currIndex = 1;
+						} else if (clientX > parseInt(pageW * 0.45) && clientX <= parseInt(pageW * 0.8)) {
+							currIndex = 2;
+						} else {
+							currIndex = 3;
+						}
+						// 匹配对应tab窗口	
+						if (currIndex > 0) {
+							targetPage = plus.webview.getWebviewById(subpages[currIndex - 1]);
+						} else {
+							targetPage = plus.webview.currentWebview();
+						}
+
+						if (targetPage == activePage) {
+							return;
+						}
+						//底部选项卡切换
+						util.toggleNview(currIndex);
+						// 子页面切换
+						util.changeSubpage(targetPage, activePage, aniShow);
+						//更新当前活跃的页面
+						activePage = targetPage;
+					});
+				});
+			})();
+		</script>
+		<script src="js/mui.com.js"></script>
+	</body>
+</html>

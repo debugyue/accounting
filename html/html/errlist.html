@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+	</head>
+	<body style="padding-top: 44px;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-white"></a>
+			<h1 class="mui-title">错题/收藏</h1>
+		</header>
+
+		<div id="boxscroll" style="padding-top: 44px;">
+
+			
+		</div>
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+		<script src="../js/jquery.nicescroll.min.js"></script>
+		<script type="text/javascript">
+			$("#boxscroll").height(document.documentElement.clientHeight - 110);
+			$("#boxscroll").niceScroll({
+				autohidemode: false
+			});
+			$(function() {
+				var str =
+					`<div class="face">
+					<div class="left-eye eye">
+						<div class="pupil"></div>
+						<div class="tear"></div>
+					</div>
+					<div class="right-eye eye">
+						<div class="pupil"></div>
+					</div>
+					<div class="mouth-container">
+						<div class="mouth"></div>
+					</div>
+					<div style="font-size:40px;margin-top:60px;">人家迷路了呢</div>
+				</div>`;
+				$("#boxscroll").html(str);
+			});
+		</script>
+	</body>
+</html>

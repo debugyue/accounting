@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+		<link rel="stylesheet" href="../css/new_pay.css">
+		<link rel="stylesheet" href="../css/mui.picker.css">
+	</head>
+	<body style="padding-top: 44px;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-white"></a>
+			<h1 class="mui-title">确认订单</h1>
+		</header>
+		<div id="boxscroll">
+			<div class="wrap answer-item">
+				<div id="order-pay">
+					<div class="content-wrap">
+						<!--填写收件地址-->
+						<ul class="personal-info clearfix mui-hidden" id="order-user">
+							<li>
+								<span>收&nbsp;件&nbsp;人：</span>
+								<input name="truename" type="text" placeholder="姓名" value="">
+							</li>
+							<li>
+								<span>联系方式：</span>
+								<input name="tel" type="text" placeholder="手机或者电话号码" value="">
+							</li>
+							<li class="regfree_address_item type_arrow" data-value="" id="recAddrBlock">
+								<span>所在地区：</span>
+								<input name="province" id="o_dizhi" type="text" placeholder="选择省市区县" value="" readonly="">
+							</li>
+							<li class="noborder">
+								<span>详细地址：</span>
+								<input id="order-address" type="text" placeholder="街道、楼盘号等资料" value="">
+							</li>
+						</ul>
+						<!--填写收件地址 end-->
+						<!--老用户已有地址-->
+						<div class="address_defalut_wrap mui-a-item" id="topFixedDiv" data-href="address.html" style="height: 70px;">
+							<div id="addressDefault" class="address_defalut address_border">
+								<ul>
+									<li><strong>1 15212141421</strong></li>
+									<li>天津天津河东区11111</li>
+									<li class="error" style="display: none;">请选择乡镇/街道</li>
+								</ul>
+								<p class="tips color_red" id="globalSalTip" style="display:none;">目的国/地区如产生关税费用，需客户自行承担，请知悉</p>
+							</div>
+						</div>
+						<!--老用户已有地址-->
+						<dl class="orderNumber clearfix">
+							<dd>订单号：202003085791798<br><span>2020-03-08</span></dd>
+							<dd><a href="javascript:;" class="count_num">共<span id="list-count">2</span>项</a><a href="javascript:;" class="arrow_blue down"></a></dd>
+						</dl>
+						<div class="order_activity" style="display: none;">
+							<span class="ico"></span>活动课程、图书不与其它优惠共享<br>题库不参与减满
+						</div>
+
+						<div id="order-shop-list">
+							<section class="course_list baok">
+								<div class="course_img"><img src="https://img3.233.com/2018-11/09/154174313511051.png"></div>
+								<dl class="course_info"><dt>一建《建筑工程+三门公共课》全科取证班</dt>
+									<dd class="grayTxt">2022-01-26</dd>
+									<dd class="price">￥2680</dd>
+								</dl>
+								<a href="javascript:;" data-val="1-29752" class="del_btn">移除</a>
+							</section>
+							<section class="course_list baok">
+								<div class="course_img"><img src="http://img3.233.com/2018-09/21/153749485452451.png"></div>
+								<dl class="course_info"><dt>小学《综合素质+教育教学知识与能力》全科取证班</dt>
+									<dd class="grayTxt">2020-12-30</dd>
+									<dd class="price">￥360</dd>
+								</dl>
+								<a href="javascript:;" data-val="1-30398" class="del_btn">移除</a>
+							</section>
+						</div>
+					</div>
+
+					<div class="gray_bar"></div>
+					<div class="" id="order-pay-yh" style="border-top: 1px solid #eee;display: block;">
+						<a href="javascript:;" id="order-pay-coupon" title="网校优惠券">
+							<dl class="discount_list"><dt><i class="ico_01">劵</i><span>购课满2400减350</span></dt>
+								<dd><span class="discount_price">-￥350</span><span class="ico_arrow"></span></dd>
+							</dl>
+						</a>
+					</div>
+					<div class="" id="order-pay-jsuan" style="margin-top:0px;border-bottom: 1px solid #eee;border-top: 1px solid #eee;">
+						<div class="discount-switch6 clearfix">
+							<p class="txt2">共优惠￥370</p>
+							<p class="txt1">还需支付<b>￥2670</b></p>
+						</div>
+					</div>
+					<div class="mt10">
+						<div class="active">选择支付方式</div>
+						<div id="order-pay-list">
+							<dl class="pay-list">
+								<dd class="choose">
+									<a href="javascript:;" class="ico_choose z-on" data-val="3">
+										<form method="post" action="#" name="formbill_wy" id="formbill_wy">
+											<input type="hidden" value="202003085791798" name="OrdersID">
+											<input type="hidden" value="267000" id="wy_v_amount" name="v_amount">
+										</form>
+									</a>
+								</dd>
+								<dd class="pay-ico"><img src="../images/weixin.png"></dd>
+								<dd class="order-dd-text">微信</dd>
+							</dl>
+							<dl class="pay-list">
+								<dd class="choose">
+									<a href="javascript:;" class="ico_choose" data-val="2">
+										<form method="post" action="#" name="formbill_zfb" id="formbill_zfb">
+											<input type="hidden" value="202003085791798" name="OrdersID">
+											<input type="hidden" value="2670" id="zfb_v_amount" name="v_amount">
+											<input type="hidden" value="qq_onoem7p" name="v_rcvname">
+											<input type="hidden" value="15010469137" name="v_ordermobile">
+											<input type="hidden" value="SC" name="Prefix">
+										</form>
+									</a>
+								</dd>
+								<dd class="pay-ico"><img src="../images/ico_alipay.png"></dd>
+								<dd class="order-dd-text">支付宝</dd>
+							</dl>
+
+
+						</div>
+						<div class="makeOrder">
+							<div class="discount-switch6 styleB">
+								<p class="txt1">还需支付:<b>￥2670</b><br><span style="display: none;">手续费:￥0</span></p>
+							</div>
+							<div class="order-box">
+								<a id="add-go" href="javascript:;">确认支付</a>
+							</div>
+							<div class="times_trips" style="display:none;">11月11日 00:00起开始支付尾款</div>
+						</div>
+
+						<div id="order-pay-tc" style="display: none;">
+							<div class="black_bg"></div>
+							<div class="coupon-list">
+								<p class="bt">我的优惠券</p><a href="javascript:;" class="list" data-val="34494406"><em>券</em>购课满2400减350<i class="on"></i></a>
+								<a href="javascript:;" class="btn">关 闭</a>
+							</div>
+						</div>
+					</div>
+					<!--地区选择-->
+					<div class="mod_address_slide show" style="display:none" id="popupAddr">
+						<div class="mod_address_slide_main type_flex">
+							<div class="mod_address_slide_head" id="popupAddrHead">选择区域<i class="close"></i></div>
+							<div class="mod_address_slide_body" id="addrBody">
+								<ul class="mod_address_slide_tabs_1" id="ulAddrTab">
+									<li class="cur"><span>请选择</span></li>
+									<li><span>城市</span></li>
+									<li><span>区县</span></li>
+								</ul>
+								<ul class="mod_address_slide_list_2 b-addres" ptag="7387.1.2" id="ulAddrList"></ul>
+								<ul class="mod_address_slide_list_2 b-addres" ptag="7387.1.2" id="city" style="display:none"></ul>
+								<ul class="mod_address_slide_list_2 b-addres" ptag="7387.1.2" id="area" style="display:none"></ul>
+							</div>
+							<div class="mod_address_slide_foot" style="display: none;"><a id="addrBtn" style="display: none;" href="javascript:void(0);"
+								 tag="1"></a></div>
+						</div>
+					</div>
+					<!--地区选择 end-->
+				</div>
+			</div>
+
+			<script src="../js/jquery-3-min.js"></script>
+			<script src="../js/mui.com.js"></script>
+			<script src="../js/jquery.nicescroll.min.js"></script>
+			<script src="../js/mui.picker.min.js"></script>
+			<script src="../js/data.city.js"></script>
+			<script type="text/javascript">
+				$(".answer-item").height(document.documentElement.clientHeight - 90);
+				$("#boxscroll").niceScroll({
+					autohidemode: true
+				});
+				var old_height = $("#order-shop-list").height();
+				$("#order-shop-list").height(old_height);
+				mui("body").on('tap', '.orderNumber', function() {
+					if ($("#order-shop-list").height() == 0) {
+						$("#order-shop-list").height(old_height);
+						$(this).find(".arrow_blue").removeClass('up');
+						$(this).find(".arrow_blue").addClass('down');
+					} else {
+						$("#order-shop-list").height(0);
+						$(this).find(".arrow_blue").removeClass('down');
+						$(this).find(".arrow_blue").addClass('up');
+					}
+				});
+				//选择省市区
+				var city_picker = new mui.PopPicker({
+					layer: 3
+				});
+				city_picker.setData(init_city_picker);
+				$("#recAddrBlock").on("tap", function() {
+					var that = this;
+					setTimeout(function() {
+						city_picker.show(function(items) {
+							var addressIds = (items[0] || {}).value + "," + (items[1] || {}).value + "," + (items[2] || {}).value;
+							var addresstexts = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+							$(that).find("#o_dizhi").val(addresstexts);
+							$(that).attr('data-value', addressIds);
+				
+						});
+					}, 200);
+				});
+				$(".pay-list").on('tap', function() {
+					$(".pay-list .ico_choose").removeClass('z-on');
+					$(this).find(".ico_choose").addClass('z-on');
+				});
+				$('.del_btn').on('tap',function(){
+					var hei=$(this).parent().height();
+					old_height=$("#order-shop-list").height()-hei-30;
+					$("#order-shop-list").height(old_height);
+					$("#list-count").text(parseInt($("#list-count").text())-1);
+					$(this).parent().remove();
+				});
+			</script>
+			
+			<script type="text/javascript">
+				
+			</script>
+	</body>
+</html>

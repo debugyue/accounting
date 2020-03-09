@@ -1,0 +1,426 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+		<link rel="stylesheet" href="../css/swiper.min.css">
+		<style type="text/css">
+			.answer-item {
+				/* border: 1px solid #00F; */
+				overflow: auto;
+				padding-top: 44px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-white"></a>
+			<h1 class="mui-title" id="mui-title">高频题库</h1>
+		</header>
+		<div id="exm" class="mui-hidden">
+			<section class="cg-cont answer-wrap viewport swiper-slide" id="{sub_boxscroll}">
+				<div class="mui-slider overview">
+					<div class="answer-item {sub_item_title} mui-active">
+						<div class="white-bg-1">
+							<div class="white-bg-2"></div>
+						</div>
+						<div class="level-cont white-bg-3">
+							<div class="dopra-con clearfix"> <span class="st-name">{sub_danxuan}</span> <span class="st-num"><i>{sub_current}</i>/{sub_count}</span>
+							</div>
+							<div class="jt-bg"></div>
+							<div class="subject-con">
+								<div class="sub-content">
+									<div class="sub-dotitle" data-examid="0" data-issubmit="0" data-answer="{sub_istrue}" data-score="0"
+									 data-examtype="0">
+										{sub_title}
+									</div>
+									<dl class="sub-answer" data-isanswer="false">
+										{sub_ABCD}
+									</dl>
+									<div class="submit_div" style="display: none;">
+										<a href="javascript:;">提交答案</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="refer-answer mui-hidden" style="margin-bottom: 10px;">
+							<div class="mui-istrue wrong-ts"><i></i>回答错误</div>
+							<div class="reck clearfix">
+								<ul>
+
+									<li>参考答案：<em>A,B,C,D</em> </li>
+									<li>您的答案：<em class="wrong"></em></li>
+
+
+								</ul>
+
+							</div>
+							<div class="solution">
+								<h4 class="solution-title">参考解析：</h4>
+								<div class="wenzi">{text_solution}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="swiper-container">
+			<div class="bd swiper-wrapper" id="mui-item-wrap">
+			</div>
+
+		</div>
+		<footer class="tk-subfoot">
+			<div class="prev-btn" id="prev-btn">上一题</div>
+			<ul class="ft-menu">
+				<li class="ks-answer"><a href="javascript:;"><i></i>答题卡</a></li>
+			</ul>
+			<div class="next-btn" id="next-btn">下一题</div>
+		</footer>
+		<section class="dt-card">
+			<div class="dt-card-top"><span>答题卡</span><a href="javascript:;" class="close-btn">关闭</a></div>
+			<div class="tk-subcard">
+				<dl id="datika-items" class="tk-sxz clearfix">
+
+				</dl>
+				<div class="card-h55"></div>
+			</div>
+			<section class="bottom-div">
+				<div class="card-color">
+					<ul>
+						<li class="dq"><i></i>当前</li>
+						<li class="wd"><i></i>未答</li>
+						<li class="yd"><i></i>已答</li>
+						<li class="right"><i></i>答对</li>
+						<li class="wrong"><i></i>答错</li>
+					</ul>
+				</div>
+				<div class="btn"><a href="javascript:;" class="btn_jx">重新开始</a></div>
+				<div class="btn"><a href="javascript:;" class="btn_submit">结束并查看结果</a></div>
+			</section>
+		</section>
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+		<script src="../js/swiper.min.js"></script>
+		<script src="../js/jquery.nicescroll.min.js"></script>
+		<script>
+			var answerlist = [];
+			var urlParams = new URLSearchParams(location.search);
+			var cid = urlParams.get('cid');
+			var title = urlParams.get('title');
+			document.getElementById('mui-title').innerHTML=title;
+			let index = 0;
+			let allcount = 0;
+			let isSubmit = false;
+			var swiper;
+			var host = "";
+			//题号与用户对应集合
+			let list = [];
+			function prev() {
+				if (index > 0) {
+					index--;
+					swiper.slideTo(index, 1000, false);
+				}
+				if (index == allcount - 1) {
+					$("#next-btn").text("提交结果");
+
+				} else {
+					$("#next-btn").text("下一题");
+				}
+			}
+			function next() {
+				if ($("#next-btn").text() != "提交结果") {
+					index++;
+					swiper.slideTo(index, 1000, false);
+				} else {
+					//提交试卷
+					submitAnswer();
+				}
+				if (index == allcount - 1) {
+					$("#next-btn").text("提交结果");
+
+				} else {
+					$("#next-btn").text("下一题");
+				}
+			}
+			function goItem(ind) {
+				index = ind;
+				swiper.slideTo(index, 1000, false);
+			}
+			function callback() {}
+			var mask = mui.createMask(callback); //callback为用户点击蒙版时自动执行的回调；
+			function submitAnswer() {
+				if (isSubmit)
+					return;
+				let emptyCount = 0;
+				for (var i = 0; i < list.length; i++) {
+					if (typeof(list[i].userkey) == undefined || !list[i].userkey)
+						emptyCount++;
+				}
+				var msg = '所有题目回答完毕，是否提交考试？';
+				if (emptyCount > 0) {
+					msg = '还有' + emptyCount + '道题没有答，是否提交考试？';
+				}
+				var btnArray = ['我再想想', '确认提交'];
+				mui.confirm(msg, '提示', btnArray, function(e) {
+					if (e.index == 1) {
+						plus.nativeUI.showWaiting();
+						mask.show();
+						isSubmit = true;
+						//$(".submit_div").hide();
+						for (var i = 0; i < list.length; i++) {
+							console.log(list[i].userkey);
+							var em = $(".refer-answer").eq(i).find(".reck li").eq(1).find('em');
+							if (list[i].truekey != list[i].userkey) {
+								$(".refer-answer").eq(i).find('.mui-istrue').addClass('wrong-ts');
+								$(".refer-answer").eq(i).find('.mui-istrue').removeClass('correct-ts');
+								$(".refer-answer").eq(i).find('.mui-istrue').html("回答错误");
+								$(em).addClass('wrong');
+							} else {
+								$(".refer-answer").eq(i).find('.mui-istrue').removeClass('wrong-ts');
+								$(".refer-answer").eq(i).find('.mui-istrue').addClass('correct-ts');
+								$(".refer-answer").eq(i).find('.mui-istrue').html("回答正确");
+								$(em).removeClass('wrong');
+							}
+							$(".refer-answer").eq(i).find(".reck li").eq(0).find('em').html(list[i].truekey);
+							$(".refer-answer").eq(i).find(".reck li").eq(1).find('em').html(list[i].userkey);
+							if (!list[i].userkey || typeof(list[i].userkey) == undefined) {
+								$(".refer-answer").eq(i).find(".reck li").eq(1).find('em').html("");
+							}
+							$(".refer-answer").eq(i).removeClass('mui-hidden');
+						}
+						//ajax把用户答题信息添加到数据库
+
+
+						setTimeout(function() {
+							plus.nativeUI.closeWaiting();
+							mask.close();
+						}, 400);
+					} else {
+						//mui.toast('不提交');
+					}
+				});
+			}
+			function muiFunc() {
+				mui(".sub-answer").on('tap', 'dd', function() {
+					console.log("ddadsa");
+					if (isSubmit)
+						return;
+					var dl = $(this).parent();
+					var danxuan = $(dl).parent().parent().parent().find('.st-name').text().trim();
+					if ($(this).hasClass('selected')) {
+						$(this).removeClass('selected');
+					} else {
+						if (danxuan == "单选题") {
+							$(dl).find('dd').removeClass('selected');
+							$(this).addClass('selected');
+						} else {
+							//多选
+							$(this).addClass('selected');
+						}
+					}
+					var dlselect = $(dl).find('dd.selected');
+					var oklist = "";
+					for (var i = 0; i < dlselect.length; i++) {
+						var dd = $(dlselect[i]).attr('data-value');
+						oklist += $(dlselect[i]).attr('data-value');
+					}
+					list[index].userkey = oklist;
+					if (dlselect.length > 0) {
+						if (index == allcount - 1) {
+							//submitAnswer();
+							$("#next-btn").text("提交结果");
+						} else {
+							next();
+						}
+					}
+				});
+				swiper.on('slideChangeTransitionEnd', function() {
+					index = swiper.activeIndex;
+					if (index == allcount - 1) {
+						$("#next-btn").text("提交结果");
+
+					} else {
+						$("#next-btn").text("下一题");
+					}
+				});
+
+				//上一题
+				mui("body").on('tap', '.prev-btn', function() {
+					prev();
+				});
+				//下一题
+				mui("body").on('tap', '.next-btn', function() {
+					next();
+				});
+				//提交按钮
+				mui("body").on('tap', '.submit_div', function() {
+					submitAnswer();
+				});
+				mui("body").on('tap', '.btn_jx', function() {
+
+					location.reload();
+				});
+				//答题卡提交按钮
+				mui("body").on('tap', '.bottom-div>div:nth-child(3)', function() {
+					submitAnswer();
+					$("footer").removeClass('mui-hidden');
+					$('.dt-card').fadeOut();
+				});
+				//关闭答题卡
+				mui("body").on('tap', '.dt-card-top a.close-btn', function() {
+					$("footer").removeClass('mui-hidden');
+					$('.dt-card').fadeOut();
+				});
+				//打开答题卡
+				mui("body").on('tap', '.ks-answer', function() {
+					var kapianhtml = "";
+					for (var i = 0; i < list.length; i++) {
+						var classstr = "";
+						if (isSubmit) {
+							if (typeof(list[i].userkey) == undefined || !list[i].userkey || list[i].truekey != list[i].userkey) {
+								classstr = "wrong";
+							} else {
+								classstr = "right";
+							}
+						} else {
+							if (index == i)
+								classstr = "current";
+							else {
+								if (typeof(list[i].userkey) == undefined || !list[i].userkey) {
+									classstr = "done";
+								} else {
+									classstr = "doing";
+								}
+							}
+						}
+						kapianhtml += '<dd class="' + classstr + '" data-num="' + (i + 1) + '"><a href="javascript:;">' + (i + 1) +
+							'</a></dd>';
+					}
+					$("#datika-items").html(kapianhtml);
+					//$("body").css("overflow","hidden");
+					$("footer").addClass('mui-hidden');
+					$('.dt-card').fadeIn();
+				});
+				mui("#datika-items").on('tap', '.tk-sxz dd a', function() {
+					$("footer").removeClass('mui-hidden');
+					goItem($(this).parent().index());
+					$('.dt-card').fadeOut();
+				});
+			}
+			function noneItem(msg){
+				var str='<section class="cg-cont answer-wrap viewport swiper-slide" id="{sub_boxscroll}">';
+				str+=`<div class="face">
+						<div class="left-eye eye">
+							<div class="pupil"></div>
+							<div class="tear"></div>
+						</div>
+						<div class="right-eye eye">
+							<div class="pupil"></div>
+						</div>
+						<div class="mouth-container">
+							<div class="mouth"></div>
+						</div>
+						<div style="font-size:40px;margin-top:60px;">${msg}</div>
+					</div>`;
+				str+='</section>';
+				$("#mui-item-wrap").html(str);
+			}
+			
+			function getSubject() {
+				console.log(host + "/sub/list/" + cid + "/0");
+				$.ajax({
+					type: "GET",
+					url: host + "/sub/list/" + cid + "/0",
+					data: {},
+					dataType: "json",
+					crossDomain: true,
+					async: false,
+					success: function(data) {
+						if (data.length > 0) {
+							var old = $("#exm").clone();
+							$("#exm").remove();
+							allcount = data.length;
+							list = new Array(allcount);
+							for (var item in data) {
+								var obj = data[item];
+								var answeritem = $(old).clone();
+								var answerHtml = $(answeritem).html();
+								list[item] = {
+									truekey: obj.istrue,
+									userkey: ''
+								};
+								if (item >= 0) {
+									answerHtml = answerHtml.replace('mui-active', '');
+								}
+								var boxscroll = "boxscroll" + (parseInt(item) + 1);
+
+								answerHtml = answerHtml.replace('{sub_title}', obj.title);
+								answerHtml = answerHtml.replace('{sub_boxscroll}', boxscroll);
+								answerHtml = answerHtml.replace('{sub_current}', parseInt(item) + 1);
+								answerHtml = answerHtml.replace('{sub_count}', allcount);
+								answerHtml = answerHtml.replace('{sub_danxuan}', '单选题');
+								answerHtml = answerHtml.replace('{sub_istrue}', obj.istrue);
+								answerHtml = answerHtml.replace('{text_solution}', (obj.text_solution == null || !obj.text_solution) ? "暂无" :
+									obj.text_solution);
+								answerHtml = answerHtml.replace('{sub_item_title}', "mui-item" + (parseInt(item) + 1));
+
+								if (obj.istrue.length > 1) {
+									answerHtml = answerHtml.replace('{sub_danxuan}', '多选题');
+								}
+
+								$.ajax({
+									type: "GET",
+									url: host + "/sub/list/" + cid + "/" + obj.id,
+									data: {},
+									dataType: "json",
+									crossDomain: true,
+									async: false,
+									success: function(data) {
+										if (data.length > 0) {
+											var dds = "";
+											for (var temp in data) {
+												dds += '<dd class="m-question-option" data-value="' + data[temp].datavalue + '"> <i class="">' + data[
+													temp].datavalue + '</i> <span>' + data[temp].title + '</span></dd>';
+											}
+											answerHtml = answerHtml.replace('{sub_ABCD}', dds);
+											$("#" + boxscroll).niceScroll();
+											$("#mui-item-wrap").append(answerHtml);
+
+										} else {
+											noneItem("人家迷路了啦");
+											//mui.toast('服务器异常，请刷新重试！222');
+										}
+									}
+								});
+							}
+
+
+						} else {
+							noneItem("人家迷路了啦");
+							//mui.toast('服务器异常，请刷新重试111！');
+						}
+					}
+				});
+			}
+			//$(function() {
+			mui.plusReady(function() {
+				host = plus.storage.getItem("accHost");
+				$(".answer-item").height(document.documentElement.clientHeight - 84 - 10);
+				getSubject();
+				swiper = new Swiper('.swiper-container', {
+					loop: false
+				});
+				muiFunc();
+			});
+			//});
+		</script>
+	</body>
+</html>

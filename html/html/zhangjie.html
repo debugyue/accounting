@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+		<style>
+			.title {
+				padding: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+				background-color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">章节课</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper" id="pullrefresh" style="padding-top: 44px;">
+				<div class="mui-scroll">
+					<section>
+						<div id="chapterlist" class="chapter-box" style="padding-top: 3px;">
+							<div class="van-collapse">
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: false //,
+				// pullRefresh: {
+				// 	container: '#pullrefresh',
+				// 	down: {
+				// 		style: 'circle',
+				// 		callback: pulldownRefresh
+				// 	}
+				// }
+			});
+			mui('.mui-scroll-wrapper').scroll({
+				indicators:false,
+				deceleration: 0.0003 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006 
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					location.reload();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					mui.toast('下拉刷新成功');
+				}, 1000);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					// var table = document.body.querySelector('.mui-table-view');
+					// var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					// for(var i = cells.length, len = i + 20; i < len; i++) {
+					// 	var li = document.createElement('li');
+					// 	li.className = 'mui-table-view-cell';
+					// 	li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+					// 	table.appendChild(li);
+					// }
+				}, 1000);
+			}
+		</script>
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+		<script>
+			function zhangjie() {
+				
+				$.ajax({
+					type: "GET",
+					url: host+"/cate/list/0",
+					data: {},
+					dataType: "json",
+					crossDomain: true,
+					success: function(data) {
+						var str = "";
+						for (var temp in data) {
+							var obj = data[temp];
+							if (temp == 0)
+								str += '<div class="van-collapse-item">';
+							else
+								str += '<div class="van-collapse-item van-hairline--top">';
+							str +=
+								'<div role="button" tabindex="0" aria-expanded="false" class="van-cell van-cell--borderless van-collapse-item__title">';
+							str += '<div class="van-cell__title">';
+							str += '<div class="zj-wrap">';
+							str += '<div class="zj-inner">';
+							str += '<p class="zj-title zj-icon close"><i></i>' + obj.title + '</p>';
+							str +=
+								'<p class="zhang-xx"><span class="right40">0 / 255</span><span>正确率：<span class="colorblack">10%</span></span></p>';
+							str += '</div>';
+							str += '</div>';
+							str += '</div>';
+							str += '</div>';
+							$.ajax({
+								type: "GET",
+								url: "http://49.233.72.232:8080/cate/list/" + obj.id,
+								data: {},
+								dataType: "json",
+								crossDomain: true,
+								async: false,
+								success: function(data1) {
+									if (data1.length > 0) {
+										str += '<div class="van-collapse-item__wrapper mui-hidden">';
+										str += '<div class="van-collapse-item__content">';
+										str += '<div class="zj-jie-wrap">';
+										str += '<div class="van-collapse">';
+										for (var temp in data1) {
+											var obj = data1[temp];
+											str += '<div class="van-collapse-item van-hairline--top zi-jie-list">';
+											// console.log(temp);
+											str +=
+												'<div role="button" tabindex="0" aria-expanded="false" class="van-cell van-cell--borderless van-collapse-item__title">';
+											str += '<div class="van-cell__title">';
+											str += '<div class="zj-inner">';
+											str += '<p class="zj-title jie-icon close"><i></i>' + obj.title + '</p>';
+											str +=
+												'<p class="zhang-xx"><span class="right40">0 / 255</span><span>正确率：<span class="colorblack">10%</span></span></p>';
+											str += '<a data-href="answer.html?cid=' + obj.id + '&title=' + obj.title +'" class="ico_zuoti mui-a-item"><i></i>做题</a>';
+											str += '</div>';
+											str += '</div>';
+											str += '</div>';
+											$.ajax({
+												type: "GET",
+												url: "http://49.233.72.232:8080/cate/list/" + obj.id,
+												data: {},
+												dataType: "json",
+												crossDomain: true,
+												async: false,
+												success: function(data2) {
+			
+													if (data2.length > 0) {
+														str += '<div class="van-collapse-item__wrapper mui-hidden">';
+														str += '<div class="van-collapse-item__content">';
+														str += '<div><ul class="zj-dian-box">';
+														for (var temp in data2) {
+															var obj = data2[temp];
+															str += '<li class="zj-inner">';
+															str += '<p class="zj-title dian-icon"><i></i>' + obj.title + '</p>';
+															str +=
+																'<p class="zhang-xx"><span class="right40">0 / 255</span><span>正确率：<span class="colorblack">10%</span></span></p>';
+															str += '<a data-href="answer.html?cid=' + obj.id + '&title=' + obj.title +'" class="ico_zuoti mui-a-item"><i></i>做题</a>';
+															str += '</li>';
+														}
+														str += '</ul>';
+														str += '</div>';
+														str += '</div>';
+														str += '</div>';
+													}
+												}
+											});
+			
+			
+											str += '</div>';
+										}
+										str += '</div>';
+										str += '</div>';
+										str += '</div>';
+										str += '</div>';
+									}
+								}
+							});
+			
+							str += '</div>';
+						}
+						$("#chapterlist>.van-collapse").html(str);
+						mui("#chapterlist").on('tap', '.zj-inner p', function() {
+			
+							let that = $(this).parents(".van-collapse-item__title"); //点击的按钮
+							let list = $(that).parent().find(".van-collapse-item__wrapper")[0]; //下面的列表
+							if ($(list).length > 0) {
+								let obj = $(that).find(".zj-title");
+								if ($(obj).hasClass("close")) {
+									//console.log("金");
+									$(obj).removeClass("close");
+									$(obj).addClass("open");
+									$(list).removeClass("mui-hidden");
+								} else {
+									//console.log("银");
+									$(obj).removeClass("open");
+									$(obj).addClass("close");
+									$(list).addClass("mui-hidden");
+								}
+							}
+						});
+					}
+				});
+			}
+			var host="";
+			mui.plusReady(function () {
+			    host = plus.storage.getItem("accHost");
+				zhangjie();
+			})
+			
+			
+		</script>
+	</body>
+</html>

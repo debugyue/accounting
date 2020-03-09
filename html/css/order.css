@@ -1,0 +1,212 @@
+html
+{
+	font-size:10px;
+}
+.fl-taocb,body{
+	background: #f5f5f5;
+}
+/*通用文字功能样式*/
+.f-lh23{ line-height:23px;}
+/*通用布局功能样式*/
+.f-fl{ float:left}
+.f-fr{ float:right}
+/*字体颜色*/
+.redTxt{color:#e13b29}
+/*内外边距*/
+.f-mt20{ margin-top:10px;}
+.f-mb10{ margin-bottom:10px;}
+/* 头部 */
+header{ width:100%; text-align:center; font-size:18px; height:45px; line-height:45px;position:relative; background:#f5f5f5 }
+header a.arrow{ position:absolute; width:12px; height:17px; background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -10px -470px; background-size:30px auto; left:11px; top:15px}
+header a.next{position:absolute; width:50px; height:25px; line-height:25px; right:11px; top:11px; font-size:15px; color:#333;}
+header a.deleteOrder{position:absolute;right:11px; top:13px; width:17px; height:20px; background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -7px -601px;background-size:30px auto;}
+header.bottom{ border-bottom:1px solid #b3b3b3}
+/*课程列表*/
+.course-list{ margin:0 0 0 10px;border-top:1px solid #eee;position:relative; padding:10px 0 10px 26px; z-index:0; margin-top:-1px}
+.course-list-box{ margin-left:116px;  position:relative; margin-right:4px;}
+.course-list-box b{ display:inline; font-weight:normal;}
+.course-list b.left-c-img{  position:absolute; left:33px; top:14px; height:60px; width:100px; text-align:center }
+.course-list b.left-c-img img{ width:100px;height:60px;}
+.course-list b.left-c-img.book-i img{ width:auto;height:60px;}
+
+.course-list-box .title-top{ font-size:14px; line-height:20px; max-height:38px; overflow:hidden; margin-right:30px}
+.course-list-box b.audition{ position:absolute; right:12px; bottom:0; padding:2px 4px ; border:1px solid #e23b29; color:#e23b29; border-radius:2px; font-size:13px }
+.course-list-box b.canle{ position:absolute; right:8px; bottom:0; width:20px; height:20px;background:url(ico-small.png) 0 -990px no-repeat; background-size:50px}
+.delete{ position:absolute; right:8px; top:0;width:15px; height:18px;background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -7px -568px;background-size:30px auto;}
+.course-list-box .price-big{ padding-bottom:0;  margin-left:0px; padding-top:10px; font-size:12px; position:relative}
+.course-list-box .price-big b.buy{ width:24px; padding:1px 4px;  border-radius:3px; display:block; border:1px solid #eee; color:#999; font-size:12px}
+.course-list-box .number-big{ font-size:18px}
+.time-record{ border:1px solid #eee; background:#f8f8f8; font-size:14px;padding:4px 0; width:100px; text-align:center; border-radius:20px; margin:14px 0 0 10px; color:#666}
+.change-box{width:22px; height:22px;background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -5px -536px;background-size:30px auto; position:absolute; left:0; top:30px;}
+.change-box.hover{ background-position:-5px -502px;}
+
+.number{ position:absolute; right:8px; top:10px}
+.jian-left{border:1px solid #ccc; width:22px; height:22px; cursor:pointer; float:left; border-radius:2px 0 0 2px  }
+.jian-left{ background:#fff url(https://img2.233.com/m/course/v3/images/icon.png) -5px -999px no-repeat; background-size:30px auto}
+.jian-left.number-text{ width:30px; text-align:center; height:20px; color:#666 ;background:#fff; border-left:none; border-right:none; font-size:1.5rem; border-radius:0; }
+.jian-left.jia-right{background:#fff url(https://img2.233.com/m/course/v3/images/icon.png) -5px -969px no-repeat; background-size:30px auto; border-radius:0 2px 2px 0 }
+
+/* 订单状态 */
+.orderState{ width:100%; height:45px; background:#fff;border-top:1px solid #b3b3b3; border-bottom:1px solid #dbdbdb; line-height:45px}
+.orderState i{ float:left; margin:13px 0 0 10px; width:21px; height:21px; background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -4px -5px; background-size:30px auto;}
+.orderState span{ float:left; color:#333; font-size:1.5rem; margin:0 10px 0 6px}
+.orderState span.unpaid{color:#e13b29; margin:0}
+
+/* 课程 */
+
+.classes{margin:0px 10px;padding:15px 0px;background:#fff;border-bottom:1px solid #eee !important;}
+.classes:last-child{border-bottm:none !important;}
+.classes dl{ display:block;position:relative;border-top:1px solid #eee;}
+.classes dl:first-child{border-top:none;}
+.classes dl dt{width:90px;height:90px;position:absolute;z-index:2;overflow:hidden;left:0px;top:0px;}
+.classes dl dt img{display:block; width:100%;border-radius:8px;}
+.classes dl dd{display:block;padding-left:105px;position:relative;min-height: 90px;}
+
+.classes dl dd h2{display:block;min-height: 58px;}
+.classes dl dd h2 a{ display:block;font-size:1.4rem; line-height:18px; color:#444}
+.classes dl dd p{font-size:1.5rem; color:#e13b29;}
+.classes dl dd p.bt{display:block;overflow: hidden;}
+.classes dl dd p span{}
+.classes dl dd p span.prices{color:#e13b29; font-size:1.7rem}
+.classes dl dd p span.validate{ width:115px}
+.classes dl dd p .throughtLine{ text-decoration:line-through; width:50px;}
+.yuan{display:block;color:#999;text-decoration: line-through;padding:0px 3px;font-size:1.2rem;}
+
+
+
+
+/* 优惠详情 */
+.orderState.dis{border-top:1px solid #dbdbdb}
+.orderState.dis i{background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -5px -37px;background-size:30px auto;}
+.details{ width:100%; background:#fff; border-bottom:1px solid #dbdbdb; box-sizing:border-box; box-shadow:0 1px 4px #dbdbdb}
+.details.shadow{box-shadow:none}
+.details ul{ width:88%; margin-left:12%; padding:15px 0; border-bottom:1px solid #dbdbdb; box-sizing:border-box;}
+.details ul.bt{ border-bottom:none}
+.details ul li{ color:#555; font-size:1.4rem; line-height:14px}
+.details ul li i{ display:inline-block; vertical-align:top; margin-right:6px; width:15px; height:15px; background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -7px -164px;background-size:30px auto;}
+.details ul li i.paid{ background-position:-7px -257px; background-size:30px auto;}
+.details ul li i.act{background-position:-8px -726px; background-size:30px auto;}
+.details ul li i.jifen{background-position:-6px -808px; background-size:30px auto;}
+.details ul li.right{ text-align:right; padding-right:10px; box-sizing:border-box; line-height:18px}
+.details ul li em{ font-size:2rem; font-style:normal; color:#e56056}
+.details ul li span{font-size:1.2rem; color:#a0a0a0}
+.details .consult{ width:100%; padding:10px 0;}
+.details .consult a{ width:94px; height:35px; border:1px solid #61646d; font-size:1.2rem; color:#61646d; line-height:35px; margin-right:10px; text-align:center; box-sizing:border-box; border-radius:3px}
+.details .consult a i{background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat; vertical-align:middle; margin-right:10px;display:inline-block;}
+.details .consult a.telephone i{  background-position:-8px -396px; width:12px; height:15px; background-size:30px auto;}
+.details .consult a.qq i{ background-position:-8px -428px; width:15px; height:18px;background-size:30px auto;}
+
+
+/* 书 */
+.orderState.bk{border-top:1px solid #dbdbdb}
+.orderState.bk i{background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -4px -852px;background-size:30px auto;}
+.book{ padding:10px; background:#fff; border-bottom:1px solid #dbdbdb}
+.book dl{ width:100%; padding:0 0 12px; margin-bottom:10px; border-bottom:1px dotted #dbdbdb}
+.book dl.bt{border-bottom:1px solid #dbdbdb}
+.book dl dt{ float:left; width:30%; height:56px;}
+.book dl dt span{ width:38px; height:56px; margin:2px auto 0; display:block; overflow:hidden}
+.book dl dt span img{ display:block; width:100%}
+.book dl dd{ float:left; width:70%; }
+.book dl dd p{ width:100%;color:#333; font-size:1.5rem;  }
+.book dl dd p span{ float:left; width:75%; overflow:hidden;}
+.book dl dd p em{float:right; text-align:left; font-style:normal}
+.book dl dd .bprice{font-size:1.5rem; color:#e13a2a; margin-top:20px }
+.express{ width:100%}
+.express a{ float:right; width:93px; height:35px; text-align:center; line-height:35px; color:#61646d; border:1px solid #61646d; border-radius:3px; font-size:1.2rem}
+.express a i{ display:inline-block; margin:0 3px 0 0; position:relative; top:-1px; left:-2px; vertical-align:middle; width:15px; height:15px; background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -8px -769px;background-size:30px auto;}
+.alreadyPayTo{ width:100%; padding:0 10px; box-sizing:border-box; line-height:40px; background:#fff; color:#555; text-align:right; font-size:1.5rem; border-bottom:1px solid #dbdbdb; border-top:1px solid #dbdbdb}
+.alreadyPayTo span{ font-size:1.7rem; color:#e13a2a}
+
+/* 个人信息 */
+.userInfo{ padding:10px; background:#fff; box-sizing:border-box; width:100%;border-top:1px solid #dbdbdb;border-bottom:1px solid #dbdbdb;}
+.userInfo h2{ font-size:1.5rem; color:#333}
+.userInfo dl{ width:100%;font-size:1.5rem; color:#a0a0a0; margin:2px 0}
+.userInfo dl dt{float:left; width:75px; text-align:left}
+.userInfo dl dd{float:left;width:75%;}
+.height{height:10px; width:100%}
+
+/* 付款 */
+.payto{ width:100%; max-width:640px; padding:10px; box-sizing:border-box; background:#fff;border-top:1px solid #dbdbdb; position:fixed; bottom:0; margin:0 auto}
+.payto a{ width:48%; text-align:center; line-height:40px;font-size:1.5rem; color:#333; background:#f5f5f5; border:1px solid #d1d1d1; box-sizing:border-box;border-radius:3px}
+.payto a.current{ border:1px solid #e23c29; background:#e23c29; color:#fff}
+
+
+/* 购物车 */
+.discountQuan{ width:100%; height:30px; background:#fff9d6; text-align:center; line-height:30px; border-bottom:1px solid #dbdbdb; border-top:1px solid #b3b3b3; font-size:1.2rem; color:#555}
+.discountQuan i{ width:16px; height:16px;background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -6px -225px; background-size:30px auto; vertical-align:middle; margin-right:10px;display:inline-block;}
+.purchase{ padding:15px 10px 10px; width:100%; box-sizing:border-box; background:#fff; border-bottom:1px solid #dbdbdb}
+
+/* 生成订单 */
+.makeOrder{ padding:10px; width:100%; box-sizing:border-box; text-align:center;color:#333; background:#fff; border-top:1px solid #b3b3b3; position:relative}
+.makeOrder .change-box{ left:10px; top:20px}
+.makeOrder a{ float:right; width:83px; height:40px; border-radius:3px; color:#fff; background:#e23b29; text-align:center;font-size:1.4rem; line-height:40px}
+.makeOrder span{ display:inline-block; font-size:1.4rem; line-height:40px;}
+
+.orders-nopay{margin:10px 10px 0px;background:#fff;border-radius:8px;}
+.order{padding:12px 10px 0px;display:block;line-height:22px;}
+.order.tp{ border-top:none}
+.order i{float:left;width:22px;height:22px;background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -6px -673px;background-size:30px auto; margin:0px 5px 0 0;}
+.order i.gou{ background-position:-6px -640px;background-size:30px auto;}
+.order p{ float:left; font-size:1.5rem; color:#666666}
+.order span.upa{ float:right;color:#e13b29;font-size:1.2rem;}
+.order.chose i{ background-position:-5px -503px; background-size:30px auto;}
+
+
+
+.eleven-ico{ display:inline-block;border:1px solid #ff336d; height:16px; font-size:1.2rem; padding:0 6px 0 34px; background:url(https://img2.233.com/m/course/v3/images/icon.png) -0px -1030px no-repeat; background-size:30px auto;color:#ff336d; border-radius:2px; margin-top:6px; line-height:16px;}
+
+
+
+
+/* 已付款 */
+.classes dl dd p span.alreadypay{ float:left; color:#e03a2a; padding-top:2px; width:50px}
+.classes dl dd p span.rgt{ float:right; width:115px; padding-right:0;padding-top:2px}
+.classes.ntop{ border-top:none; border-bottom:none}
+.classes.bns{ border-bottom:1px solid #dbdbdb; border-top:none}
+
+/* 付款失败 */
+.fail{ width:100%; padding:25px 0; background:#fff; border-bottom:1px solid #dbdbdb}
+.fail dl{ width:240px; margin:0 auto}
+.fail dl dt{ float:left;width:30px; height:32px; margin:17px 12px 0 0;background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat 0 -72px;background-size:30px auto}
+.fail dl dd{ float:left}
+.fail dl dd p{ font-size:1.8rem; color:#333}
+.fail dl dd span{font-size:1.5rem; color:#333; display:block}
+.checkMoreOrders{ width:100%; padding:0 10px; box-sizing:border-box; }
+.checkMoreOrders a{ display:block; width:100%; text-align:center; line-height:40px; color:#fff; font-size:1.5rem; background:#ff7d01; border-radius:3px; margin-top:50px}
+.bfoot{ padding:7px 0}
+.bfoot a{ float:right; margin-right:10px; color:#a0a0a0; font-size:1.2rem}
+.fail.succuss dl dt{ background-position:0 -116px;background-size:30px auto}
+
+/* 待付款 */
+.payment{display:block;background:#f5f5f5;text-align:center;}
+.payment a{ display:inline-block;line-height:30px; box-sizing:border-box; font-size:1.5rem;border-bottom:3px solid #f5f5f5;padding:0px 5px 0px;margin:0px 20px;color:#666;}
+.payment a.current{ color:#e13b29;border-color:#e13b29;}
+.classes.pb{ padding:10px 10px 0}
+.classes dl.dotted{ border-bottom:1px dotted #dbdbdb; padding-bottom:10px}
+.classes dl dd p i{}
+.classes dl dd p.classTime{ font-size:1.4rem; color:#555; line-height:14px; padding:4px 0}
+.classes dl dd p .cprice{ color:#de3d26; font-size:1.7rem;padding-right:10px;}
+.classes dl dd p .oprice{ color:#999; font-size:1.3rem; text-decoration:line-through;}
+.classes dl dd p .wprice{ color:#e13b29; font-size:1.2rem; position:relative; top:-1px}
+.classes dl dd p .redTxt{ color:#e13b29; font-size:1.2rem}
+.classes dl dt a{position: relative;}
+.classes.bn{}
+.cancelOrder{ width:100%;border:none;}
+
+.cancelOrder .cancel{ padding:10px 0; box-sizing:border-box;}
+.cancelOrder .cancel a{ float:right; margin-right:10px; width:96px; height:35px; line-height:35px; color:#a0a0a0; text-align:center; font-size:1.4rem; border:1px solid #b3b3b3; border-radius:35px;box-sizing: border-box;}
+.cancelOrder .cancel a.z-on{ background:#fb5d37;background-image: linear-gradient(to right,#fb5d37,#e13a34); color:#fff;border:none;}
+.phonePay{ width:100%; background:#fff9d6; margin-top:70px; line-height:22px; text-align:center; font-size:1.2rem}
+.cancelOrder .cancel a.tail-money,.cancelOrder .cancel a.tail-money-no{background:#eb0f77;background-image: linear-gradient(to right,#eb0f77,#fe6660);border:none;color:#fff;box-shadow: 0 3px 3px #ffd4c1;}
+.cancelOrder .cancel a.tail-money-no{opacity: 0.5;}
+.cancel_p{float:left;font-size:1.4rem;color:#666;padding:8px 0px 0px 10px;}
+
+.phonePay span{ color:#e03d29}
+.quan{ width:100%; border-bottom:1px solid #dbdbdb; padding-bottom:5px}
+.quan .discount{ float:left; width:70%; margin-left:100px; text-align:left}
+.quan .discount p i{ display:inline-block; vertical-align:top; width:15px; height:15px; margin-right:6px; background:url(https://img2.233.com/m/course/v3/images/icon.png) no-repeat -7px -164px;background-size:30px auto; position:relative; top:-1px}
+.quan .discount p i.z-deduct{background-position:-7px -257px;background-size:30px auto}
+.quan .discount p i.act{background-position:-8px -726px; background-size:30px auto}
+.quan .discount p.classTime{ font-size:1.2rem; color:#555; line-height:12px; padding:4px 0}
+.pintuan_lable{position: absolute;top: 0;right:0;height: 16px;line-height: 16px;padding:0 6px;background-image: linear-gradient(90deg,#fe5b2f,#ee4836);border-radius: 0 0 0 5px;font-size: 1.0rem;color:#fff;}
+.pintuan_tip{display: inline-block;width: 48px;height: 17px;background: url(https://img2.233.com/m/course/v3/css/pintuan_tip.png);background-size: 48px;}

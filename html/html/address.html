@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+		<link rel="stylesheet" href="../css/new_pay.css">
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-white"></a>
+			<h1 class="mui-title">收件地址管理</h1>
+		</header>
+		<div id="boxscroll" style="padding-top: 44px;">
+			<div class="wrap">
+				<div id="order-pay" class=" answer-item">
+					<div class="manage-address">
+						<ul class="default-ulss">
+							<li class="bindaddr manage-address-name" data-id="184057">我的小可爱<span class="address-phone">15312541247</span></li>
+							<li class="bindaddr" data-id="184057"><span class="address-address-x"></span>天津天津河东区东街D区33号1108</li>
+							<li class="clearfix manage-address-n">
+								<p class="label-default-l label-default-lmr" data-id="184057"><span>默认地址</span></p>
+								<p class="label-default-r">
+									<span><a class="mui-a-item" data-href="addressEdit.html">编辑</a></span>
+									<em data-id="184057">删除</em>
+								</p>
+							</li>
+						</ul>
+					</div>
+					<div class="add-address-button"><a href="#">添加新地址</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+		<script src="../js/jquery.nicescroll.min.js"></script>
+		<script type="text/javascript">
+			$("#boxscroll").height(document.documentElement.clientHeight - 110);
+			$("#boxscroll").niceScroll({
+				autohidemode: false
+			});
+		</script>
+	</body>
+</html>

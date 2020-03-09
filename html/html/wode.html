@@ -1,0 +1,121 @@
+<div id="nTalk_post_hiddenElement"></div>
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/master.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/wode.css">
+	</head>
+	<body style="padding-top: 44px;">
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;">
+			<h1 class="mui-title">个人中心</h1>
+		</header>
+
+		<div class="mui-self-wrap">
+			<div class="data-top">
+				<!-- <span class="data-t-l"><img src="../images/user.jpg"><b class="d-name">我的小可爱</b><b class="d-number">当前余额：￥0</b></span> -->
+				<span class="data-t-l"><img src="../images/user.jpg"><b class="d-name">我的小可爱</b></span>
+			</div>
+			<div class="category-entry">
+				<a class="mui-a-item" data-href="order.html">
+					<i class="order"><em>1</em></i>
+					<span>订单</span>
+				</a>
+				<a class="mui-a-item" data-href="youhui.html">
+					<i class="coupon"><em>6</em></i>
+					<span>优惠券</span>
+				</a>
+				<a class="mui-a-item" data-href="banzhuren.html">
+					<i class="integral"></i>
+					<span>班主任</span>
+				</a>
+				<a class="mui-a-item" data-href="xuexi.html">
+					<i class="red-packets"></i>
+					<span>学习报告</span>
+				</a>
+			</div>
+			<div class="data-list" style="border: 1px solid #eee;">
+				<!--  <a href="http://www.baidu.comg"><b class="l-wdgz"></b>我的关注<b class="l-sjx"></b></a> -->
+				<a class="mui-a-item" data-href="mycourse.html"><b></b>我的课程<b class="l-sjx"></b></a>
+				<a class="mui-a-item" data-href="cache.html"><b class="l-wdsc"></b>我的缓存<b class="l-sjx"></b></a>
+				<a class="mui-a-item" data-href="errlist.html"><b class="l-wdsc"></b>错题收藏<b class="l-sjx"></b></a>
+			</div>
+			<div class="data-list" style="border: 1px solid #eee;">
+				<a id="footMask" class="mui-a-item"><b class="l-xrlb"></b>客服中心<i class="r-tip">服务时间：8:00-22:00</i><b class="l-sjx"></b></a>
+				<a class="mui-a-item" data-href="xieyi.html"><b class="l-introduce"></b>我的协议<b class="l-sjx"></b></a>
+			</div>
+			<div class="data-list" style="border: 1px solid #eee;">
+				<a class="mui-a-item" data-href="setting.html"><b class="l-task"></b>设置<b class="l-sjx"></b></a>
+			</div>
+			<style type="text/css">
+				.data-list:after {
+					display: block;
+					visibility: hidden;
+					clear: both;
+					height: 0;
+					content: '.';
+				}
+
+				.logout-btn {
+					background-color: #0088ff;
+					color: #FFF !important;
+					display: block;
+					width: 100%;
+					line-height: 45px;
+					text-align: center;
+					margin: 10px auto;
+					font-size: 16px;
+					border-radius: 3px;
+				}
+
+				.content a {
+					color: #444;
+				}
+				
+			</style>
+			<a href="#" class="logout-btn mui-hidden">退出</a>
+		</div>
+		<script src="../js/jquery-3-min.js"></script>
+		<script src="../js/mui.com.js"></script>
+		<script type="text/javascript">
+			//客服电话
+			var tel = "400-6060-1360";
+			mui('body').on('tap', '#footMask', function() {
+
+				var that = this.firstElementChild.firstElementChild;
+				var ids = [{
+						id: "boda"
+					}, {
+						id: "tel"
+					}],
+					bts = [{
+						title: "拨打服务热线"
+					}, {
+						title: tel
+					}];
+				plus.nativeUI.actionSheet({
+					cancel:"取消",
+					buttons: bts
+				}, function(e) {
+					var i = e.index;
+					if (i == 1 || i == 2) {
+						if (mui.os.plus) {
+							plus.device.dial(tel);
+						} else {
+							location.href = 'tel:' + tel;
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
